@@ -9,7 +9,7 @@ services:
       - .:/app 
     networks:
       - ucomand-network
-  
+
 networks:
-    ucomand-network:
+  ucomand-network:
     external: true
