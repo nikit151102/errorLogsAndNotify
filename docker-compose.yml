@@ -8,8 +8,8 @@ services:
     volumes:
       - .:/app 
     networks:
-      - constructionAutomation
+      - ucomand-network
   
 networks:
-  constructionAutomation:
+    ucomand-network:
     external: true
