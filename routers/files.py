@@ -23,7 +23,7 @@ async def upload_file(file: UploadFile = File(...)):
     return {"filename": file.filename, "message": "File uploaded successfully"}
 
 # Эндпоинт для перезаписи файла
-@router.post("/overwrite/") 
+@router.post("/overwriteFile/") 
 async def overwrite_file(file: UploadFile = File(...)):
     file_location = os.path.join(UPLOAD_DIRECTORY, file.filename)
     
