@@ -6,7 +6,7 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://uteam.top", "https://uteam.top/api"], 
+    allow_origins=["https://uteam.top", "https://uteam.top/api", "http://localhost:4200"], 
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
