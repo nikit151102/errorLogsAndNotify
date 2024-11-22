@@ -1,4 +1,4 @@
-from fastapi import File, UploadFile, APIRouter
+from fastapi import File, UploadFile, APIRouter,HTTPException  
 from fastapi.responses import StreamingResponse, FileResponse, JSONResponse  # Make sure FileResponse is imported
 import os
 import mimetypes
@@ -11,7 +11,7 @@ if not os.path.exists(UPLOAD_DIRECTORY):
     os.makedirs(UPLOAD_DIRECTORY)
 
 # Эндпоинт для отправки файла
-@router.post("/upload/")
+@router.post("/upload")
 async def upload_file(file: UploadFile = File(...)):
     file_location = os.path.join(UPLOAD_DIRECTORY, file.filename)
     
@@ -23,7 +23,7 @@ async def upload_file(file: UploadFile = File(...)):
     return {"filename": file.filename, "message": "File uploaded successfully"}
 
 # Эндпоинт для перезаписи файла
-@router.post("/overwriteFile/") 
+@router.post("/overwriteFile") 
 async def overwrite_file(file: UploadFile = File(...)):
     file_location = os.path.join(UPLOAD_DIRECTORY, file.filename)
     
@@ -53,7 +53,7 @@ async def get_file(filename: str):
     raise HTTPException(status_code=404, detail="File not found")
 
 # Эндпоинт для получения всех файлов в директории
-@router.get("/files/")
+@router.get("/files")
 async def list_files():
     files = os.listdir(UPLOAD_DIRECTORY)
     if not files:
