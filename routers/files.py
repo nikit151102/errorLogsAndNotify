@@ -51,3 +51,20 @@ async def get_file(filename: str):
         return FileResponse(file_location, media_type=mime_type, headers=headers)
     
     raise HTTPException(status_code=404, detail="File not found")
+
+# Эндпоинт для получения всех файлов в директории
+@router.get("/files/")
+async def list_files():
+    files = os.listdir(UPLOAD_DIRECTORY)
+    if not files:
+        return {"message": "No files found"}
+    return {"files": files}
+
+# Эндпоинт для удаления файла
+@router.delete("/files/{filename}")
+async def delete_file(filename: str):
+    file_location = os.path.join(UPLOAD_DIRECTORY, filename)
+    if os.path.exists(file_location):
+        os.remove(file_location)
+        return {"message": f"File '{filename}' deleted successfully"}
+    raise HTTPException(status_code=404, detail="File not found")
