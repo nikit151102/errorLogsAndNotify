@@ -2,6 +2,7 @@ services:
   error_and_log_service:
     build:
       context: .
+    container_name: error_and_log_service
     ports:
       - "8000:8000"
     volumes:
