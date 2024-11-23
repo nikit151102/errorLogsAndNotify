@@ -1,5 +1,5 @@
 services:
-  errorAndLogService:
+  error_and_log_service:
     build:
       context: .
     ports:
